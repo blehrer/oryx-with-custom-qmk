@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                    MT(MOD_LCTL, KC_BSPC),MT(MOD_LALT, KC_DELETE),KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_RCTL, KC_ENTER),KC_TRANSPARENT
+                                                                                    MT(MOD_LCTL, KC_BSPC),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_RCTL, KC_ENTER),KC_TRANSPARENT
   ),
   [2] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LM(15,MOD_LSFT),KC_PSCR,        KC_TRANSPARENT, KC_PLUS,        MO(13),                                                                                                         KC_MINUS,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, CW_TOGG,
                                                                                                     OSM(MOD_LGUI),  KC_PAGE_UP,     KC_PAGE_UP,     KC_TRANSPARENT,
                                                                                                                     KC_PGDN,        KC_PGDN,
-                                                                                    MT(MOD_LCTL, KC_BSPC),MT(MOD_LALT, KC_DELETE),KC_LEFT_SHIFT,  KC_RIGHT_SHIFT, MT(MOD_RCTL, KC_ENTER),MT(MOD_RGUI, KC_SPACE)
+                                                                                    MT(MOD_LCTL, KC_BSPC),KC_TRANSPARENT, KC_LEFT_SHIFT,  KC_RIGHT_SHIFT, MT(MOD_RCTL, KC_ENTER),MT(MOD_RGUI, KC_SPACE)
   ),
   [4] = LAYOUT_ergodox_pretty(
     TO(0),          KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_AMPR,        KC_ASTR,        KC_LABK,        KC_RABK,                                                                                                        KC_0,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     OSM(MOD_LGUI),  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_UP,KC_TRANSPARENT,
                                                                                                                     KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_DOWN,
-                                                                                    MT(MOD_LCTL, KC_BSPC),MT(MOD_RALT, KC_DELETE),KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_RCTL, KC_ENTER),MT(MOD_RGUI, KC_SPACE)
+                                                                                    MT(MOD_LCTL, KC_BSPC),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_RCTL, KC_ENTER),MT(MOD_RGUI, KC_SPACE)
   ),
   [6] = LAYOUT_ergodox_pretty(
     TO(0),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                    LM(10,MOD_LGUI),LM(10,MOD_LCTL),LM(11,MOD_LSFT),MO(11),         LM(10,MOD_LALT),TD(DANCE_14)
+                                                                                    LM(10,MOD_LGUI),LM(10,MOD_LALT),LM(11,MOD_LSFT),MO(11),         LM(10,MOD_LALT),TD(DANCE_14)
   ),
   [10] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -469,34 +469,34 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data);
 
 void on_dance_0(tap_dance_state_t *state, void *user_data) {
     if(state->count == 3) {
-        tap_code16(KC_ESCAPE);
-        tap_code16(KC_ESCAPE);
-        tap_code16(KC_ESCAPE);
+        tap_code16(KC_DELETE);
+        tap_code16(KC_DELETE);
+        tap_code16(KC_DELETE);
     }
     if(state->count > 3) {
-        tap_code16(KC_ESCAPE);
+        tap_code16(KC_DELETE);
     }
 }
 
 void dance_0_finished(tap_dance_state_t *state, void *user_data) {
     dance_state[0].step = dance_step(state);
     switch (dance_state[0].step) {
-        case SINGLE_TAP: register_code16(KC_ESCAPE); break;
+        case SINGLE_TAP: register_code16(KC_DELETE); break;
         case SINGLE_HOLD: register_code16(KC_LEFT_ALT); break;
-        case DOUBLE_TAP: register_code16(KC_ESCAPE); register_code16(KC_ESCAPE); break;
+        case DOUBLE_TAP: register_code16(KC_DELETE); register_code16(KC_DELETE); break;
         case DOUBLE_HOLD: register_code16(KC_LEFT_CTRL); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_ESCAPE); register_code16(KC_ESCAPE);
+        case DOUBLE_SINGLE_TAP: tap_code16(KC_DELETE); register_code16(KC_DELETE);
     }
 }
 
 void dance_0_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state[0].step) {
-        case SINGLE_TAP: unregister_code16(KC_ESCAPE); break;
+        case SINGLE_TAP: unregister_code16(KC_DELETE); break;
         case SINGLE_HOLD: unregister_code16(KC_LEFT_ALT); break;
-        case DOUBLE_TAP: unregister_code16(KC_ESCAPE); break;
+        case DOUBLE_TAP: unregister_code16(KC_DELETE); break;
         case DOUBLE_HOLD: unregister_code16(KC_LEFT_CTRL); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_ESCAPE); break;
+        case DOUBLE_SINGLE_TAP: unregister_code16(KC_DELETE); break;
     }
     dance_state[0].step = 0;
 }
