@@ -19,7 +19,7 @@
 #define MOUSEKEY_WHEEL_MAX_SPEED 3
 
 #define AUTO_SHIFT_TIMEOUT 165
-#define SERIAL_NUMBER "ndVrG/rbKmMJ"
+#define SERIAL_NUMBER "ndVrG/x9nRox"
 #define LAYER_STATE_32BIT
 #define COMBO_COUNT 23
 
